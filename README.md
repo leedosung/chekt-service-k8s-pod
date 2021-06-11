@@ -1,0 +1,1 @@
+# chekt-service-k8s-pod
