@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dealer-api
+  annotations:
+    fluxcd.io/automated: "true"  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dealer-api
+  template:
+    metadata:
+      labels:
+        app: dealer-api
+    spec:
+      containers:
+      - name: dealer-api
+        image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
+        imagePullPolicy: Always # 프로덕션은 Alywas 로 하면 안됨
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: DS-Test-ng
