@@ -3,6 +3,12 @@ kind: Kustomization
 
 namePrefix: kustomize-
 
+metadata:
+  name: dealer-api
+
+commonLabels:
+  app: dealer-api
+
 resources:
   - deployment.yaml
   - service.yaml
