@@ -13,3 +13,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+images:
+  - name: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
+    newTag: latest
