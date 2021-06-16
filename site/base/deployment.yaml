@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site-api
+  annotations:
+    fluxcd.io/automated: "true"  
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: site-api
+  template:
+    metadata:
+      labels:
+        app: site-api
+    spec:
+      containers:
+      - name: site-api
+        image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/site-api
+        imagePullPolicy: Always
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: api-ng

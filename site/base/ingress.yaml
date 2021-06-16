@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: site-api
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: chekt-api
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1:289952279049:certificate/0f3a9f87-f306-4f4a-984a-f164f3753814
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
+spec:
+  rules:
+   - http:
+       paths:
+        - path: /api/v2/sites*
+          pathType: Prefix
+          backend:
+           serviceName: site-api
+           servicePort: 3300
