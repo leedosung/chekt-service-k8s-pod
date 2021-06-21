@@ -5,7 +5,7 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"  
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: dealer-api
@@ -18,5 +18,21 @@ spec:
       - name: dealer-api
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
         imagePullPolicy: Always
+        ports:
+          - name: http
+            containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
       nodeSelector:
         eks.amazonaws.com/nodegroup: api-ng
