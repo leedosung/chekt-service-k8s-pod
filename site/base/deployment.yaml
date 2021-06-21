@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: site-api
-  annotations:
-    fluxcd.io/automated: "true"  
 spec:
   replicas: 2
   selector:
@@ -19,4 +17,4 @@ spec:
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/site-api
         imagePullPolicy: Always
       nodeSelector:
-        eks.amazonaws.com/nodegroup: DS-Test-ng
+        app-key: site

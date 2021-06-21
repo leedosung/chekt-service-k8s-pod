@@ -9,6 +9,8 @@ metadata:
 commonLabels:
   app: dealer-api
 
+namespace: chekt-api
+
 resources:
   - deployment.yaml
   - service.yaml

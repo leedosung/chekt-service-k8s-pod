@@ -4,13 +4,13 @@ metadata:
   name: dealer-api
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: chekt-api
+    alb.ingress.kubernetes.io/load-balancer-name: api
     alb.ingress.kubernetes.io/group.name: chekt-api
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1:289952279049:certificate/0f3a9f87-f306-4f4a-984a-f164f3753814
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-group-attributes: 'deregistration_delay.timeout_seconds=30'
-    alb.ingress.kubernetes.io/target-type: ip # instance
-    alb.ingress.kubernetes.io/target-node-labels: 'app-key=dealer'
+    alb.ingress.kubernetes.io/target-group-attributes: "deregistration_delay.timeout_seconds=30"
+    alb.ingress.kubernetes.io/target-type: ip
+    # alb.ingress.kubernetes.io/target-node-labels: "app-key=dealer"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
     alb.ingress.kubernetes.io/group.order: '2'
 spec:

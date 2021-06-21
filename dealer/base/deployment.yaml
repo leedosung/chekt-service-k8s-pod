@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dealer-api
 spec:
-  replicas: 2
+  replicas: 5
   revisionHistoryLimit: 1
   selector:
     matchLabels:
@@ -14,8 +14,8 @@ spec:
         app: dealer-api
     spec:
       terminationGracePeriodSeconds: 30
-      readinessGates:
-      - conditionType: target-health.alb.ingress.k8s.aws/dealer-api_dealer-api_3000
+      # readinessGates:
+      # - conditionType: target-health.alb.ingress.k8s.aws/dealer-api_dealer-api_3000
       containers:
       - name: dealer-api
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
@@ -39,4 +39,13 @@ spec:
           periodSeconds: 10
           timeoutSeconds: 5
       nodeSelector:
-        eks.amazonaws.com/nodegroup: api-ng
+        app-key: dealer
+      #affinity:
+      #  nodeAffinity:
+      #    requiredDuringSchedulingIgnoredDuringExecution:
+      #      nodeSelectorTerms:
+      #      - matchExpressions:
+      #        - key: app-key
+      #          operator: In
+      #          values:
+      #          - dealer
