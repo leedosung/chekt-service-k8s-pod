@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dealer-api
-  annotations:
-    fluxcd.io/automated: "true"  
 spec:
   replicas: 2
   revisionHistoryLimit: 1
