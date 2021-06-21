@@ -15,7 +15,9 @@ spec:
       labels:
         app: dealer-api
     spec:
-      terminationGracePeriodSeconds: 10
+      terminationGracePeriodSeconds: 30
+      readinessGates:
+      - conditionType: target-health.alb.ingress.k8s.aws/chekt-dealer-api_chekt-dealer-api_3000
       containers:
       - name: dealer-api
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
