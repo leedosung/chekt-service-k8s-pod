@@ -16,10 +16,10 @@ spec:
         app: dealer-api
     spec:
       containers:
+      terminationGracePeriodSeconds: 20
       - name: dealer-api
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
         imagePullPolicy: Always
-        # terminationGracePeriodSeconds: 20
         ports:
           - containerPort: 3000
         readinessProbe:
