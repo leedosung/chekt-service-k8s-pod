@@ -18,6 +18,7 @@ spec:
       - name: dealer-api
         image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
         imagePullPolicy: Always
+        terminationGracePeriodSeconds: 20
         ports:
           - name: http
             containerPort: 3000
