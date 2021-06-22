@@ -12,6 +12,7 @@ commonLabels:
 namespace: chekt-api
 
 resources:
+  - hpa.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml

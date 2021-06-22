@@ -3,11 +3,17 @@ kind: Deployment
 metadata:
   name: dealer-api
 spec:
-  replicas: 5
+  replicas: 3
   revisionHistoryLimit: 1
+  minReadySeconds: 3
   selector:
     matchLabels:
       app: dealer-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
   template:
     metadata:
       labels:
@@ -22,6 +28,13 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 3000
+        resources:
+          requests:
+            cpu: "700m"
+            memory: "200Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1000Mi"
         readinessProbe:
           httpGet:
             path: /
