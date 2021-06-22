@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dealer-api
 spec:
-  # replicas: 3
+  replicas: 2
   revisionHistoryLimit: 2
   minReadySeconds: 3
   selector:
