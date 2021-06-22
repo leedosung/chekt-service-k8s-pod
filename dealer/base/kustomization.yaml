@@ -12,10 +12,10 @@ commonLabels:
 namespace: chekt-api
 
 resources:
-  - hpa.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - hpa.yaml
 
 images:
   - name: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
