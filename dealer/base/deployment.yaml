@@ -5,8 +5,8 @@ metadata:
 spec:
   # https://argoproj.github.io/argo-cd/user-guide/best_practices/#leaving-room-for-imperativeness
   # replicas: 2
-  revisionHistoryLimit: 10
-  minReadySeconds: 3
+  revisionHistoryLimit: 5
+  minReadySeconds: 10
   selector:
     matchLabels:
       app: dealer-api
