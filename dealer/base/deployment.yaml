@@ -19,9 +19,9 @@ spec:
     metadata:
       labels:
         app: dealer-api
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/path: '/api/versions'
+      # annotations:
+        # prometheus.io/scrape: 'true'
+        # prometheus.io/path: '/api/versions'
         # prometheus.io/port: '3000'
     spec:
       terminationGracePeriodSeconds: 30
@@ -35,8 +35,8 @@ spec:
           - containerPort: 3000
         resources:
           requests:
-            cpu: "200m"
-            memory: "200Mi"
+            cpu: "700m"
+            memory: "500Mi"
           limits:
             cpu: "900m"
             memory: "1200Mi"
