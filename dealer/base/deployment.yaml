@@ -19,10 +19,10 @@ spec:
     metadata:
       labels:
         app: dealer-api
-    annotations:
-      prometheus.io/scrape: 'true'
-      prometheus.io/path: '/api/versions'
-      # prometheus.io/port: '3000'
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: '/api/versions'
+        # prometheus.io/port: '3000'
     spec:
       terminationGracePeriodSeconds: 30
       # readinessGates:
