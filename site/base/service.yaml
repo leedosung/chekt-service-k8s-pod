@@ -8,5 +8,7 @@ spec:
   selector:
     app: site-api
   ports:
-    - port: 3300
+    - name: http
+      port: 3300
       protocol: TCP
+      targetPort: 3300
