@@ -1,24 +1,41 @@
-apiVersion: extensions/v1beta1
+---
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dealer-api
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: api
-    alb.ingress.kubernetes.io/group.name: chekt-api
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1:289952279049:certificate/0f3a9f87-f306-4f4a-984a-f164f3753814
+    # alb.ingress.kubernetes.io/load-balancer-name: api
+    alb.ingress.kubernetes.io/certificate-arn: >-
+      arn:aws:acm:ap-northeast-1:289952279049:certificate/0f3a9f87-f306-4f4a-984a-f164f3753814
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-group-attributes: "deregistration_delay.timeout_seconds=30"
-    alb.ingress.kubernetes.io/target-type: ip
     # alb.ingress.kubernetes.io/target-node-labels: "app-key=dealer"
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/group.name: chekt-api
     alb.ingress.kubernetes.io/group.order: '2'
+    # target group setting
+    alb.ingress.kubernetes.io/target-group-attributes: >-
+      deregistration_delay.timeout_seconds=30
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '10'
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5'
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
 spec:
+  defaultBackend:
+    service:
+      name: dealer-api
+      port:
+        number: 3000
   rules:
-   - http:
-       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-           serviceName: dealer-api
-           servicePort: 3000
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dealer-api
+                port:
+                  number: 3000
