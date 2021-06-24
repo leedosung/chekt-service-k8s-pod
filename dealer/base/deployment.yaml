@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,53 +18,57 @@ spec:
       maxSurge: 25%
   template:
     metadata:
+      # annotations:
+      # prometheus.io/scrape: 'true'
+      # prometheus.io/path: '/api/versions'
+      # prometheus.io/port: '3000'
       labels:
         app: dealer-api
-      # annotations:
-        # prometheus.io/scrape: 'true'
-        # prometheus.io/path: '/api/versions'
-        # prometheus.io/port: '3000'
     spec:
       terminationGracePeriodSeconds: 30
       # readinessGates:
-      # - conditionType: target-health.alb.ingress.k8s.aws/dealer-api_dealer-api_3000
+      # - conditionType: >-
+      # target-health.alb.ingress.k8s.aws/dealer-api_dealer-api_3000
       containers:
-      - name: dealer-api
-        image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 3000
-        resources:
-          requests:
-            cpu: "700m"
-            memory: "500Mi"
-          limits:
-            cpu: "900m"
-            memory: "1200Mi"
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          failureThreshold: 2
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 5
-          failureThreshold: 2
-          periodSeconds: 10
-          timeoutSeconds: 5
+        - name: dealer-api
+          image: 289952279049.dkr.ecr.ap-northeast-1.amazonaws.com/ds-test
+          # securityContext:
+          #  readOnlyRootFilesystem: true
+          #  runAsNonRoot: true
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "900Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1000Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            failureThreshold: 2
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            failureThreshold: 2
+            periodSeconds: 10
+            timeoutSeconds: 5
       nodeSelector:
         app-key: dealer
-      #affinity:
-      #  nodeAffinity:
-      #    requiredDuringSchedulingIgnoredDuringExecution:
-      #      nodeSelectorTerms:
-      #      - matchExpressions:
-      #        - key: app-key
-      #          operator: In
-      #          values:
-      #          - dealer
+        # affinity:
+        #  nodeAffinity:
+        #    requiredDuringSchedulingIgnoredDuringExecution:
+        #      nodeSelectorTerms:
+        #      - matchExpressions:
+        #        - key: app-key
+        #          operator: In
+        #          values:
+        #          - dealer

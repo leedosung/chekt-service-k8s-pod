@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,6 +8,7 @@ spec:
   selector:
     app: dealer-api
   ports:
-    - port: 3000
+    - name: http
+      port: 3000
       protocol: TCP
       targetPort: 3000

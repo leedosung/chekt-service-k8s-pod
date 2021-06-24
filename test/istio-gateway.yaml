@@ -1,0 +1,53 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: dealer-api
+  namespace: chekt-api
+spec:
+  selector:
+    istio: ingressgateway# use istio default controller
+    # app: dealer-api
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+    - port:
+        number: 443
+        name: http-443
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: dealer-api
+spec:
+  host: "*"
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: dealer-api
+  namespace: chekt-api
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - dealer-api
+  http:
+    - match:
+        - uri:
+            prefix: /api
+      route:
+        - destination:
+            host: dealer-api.chekt-api.svc.cluster.local
+            port:
+              number: 3000
