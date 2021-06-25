@@ -47,7 +47,6 @@ spec:
               cpu: "1000m"
               memory: "900Mi"
               ephemeral-storage: "3Gi"
-            limits:
           readinessProbe:
             httpGet:
               path: /
