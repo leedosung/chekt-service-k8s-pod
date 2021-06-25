@@ -14,33 +14,35 @@ spec:
   metrics:
     - type: Resource
       resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
-    - type: Resource
-      resource:
         name: memory
         target:
           # type: Utilization
           # averageUtilization: 80
           type: AverageValue
           averageValue: 1000Mi
-    # - type: Pods
-    #   pods:
-    #     metric:
-    #       name: <packets-per-second>
-    #     target:
-    #       type: AverageValue
-    #       averageValue: 1k
-    # - type: Object
-    #   object:
-    #     metric:
-    #       name: <requests-per-second>
-    #     describedObject:
-    #       apiVersion: networking.k8s.io/v1beta1
-    #       kind: Ingress
-    #       name: <ingress-name>
-    #     target:
-    #       type: Value
-    #       value: 10k
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+
+#######################################
+# - type: Pods
+#   pods:
+#     metric:
+#       name: <packets-per-second>
+#     target:
+#       type: AverageValue
+#       averageValue: 1k
+# - type: Object
+#   object:
+#     metric:
+#       name: <requests-per-second>
+#     describedObject:
+#       apiVersion: networking.k8s.io/v1beta1
+#       kind: Ingress
+#       name: <ingress-name>
+#     target:
+#       type: Value
+#       value: 10k
