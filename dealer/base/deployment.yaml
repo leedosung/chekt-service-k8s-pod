@@ -41,10 +41,13 @@ spec:
           resources:
             requests:
               cpu: "500m"
-              memory: "900Mi"
+              memory: "800Mi"
+              ephemeral-storage: "2Gi"
             limits:
               cpu: "1000m"
-              memory: "1000Mi"
+              memory: "900Mi"
+              ephemeral-storage: "3Gi"
+            limits:
           readinessProbe:
             httpGet:
               path: /
@@ -61,6 +64,23 @@ spec:
             failureThreshold: 2
             periodSeconds: 10
             timeoutSeconds: 5
+          volumeMounts:
+            - mountPath: /cache
+              name: config-cache
+              # - mountPath: /hostdir
+              # name: host-vol
+              # - mountPath: /pconfig
+              # name: pvol
+      volumes:
+        - name: config-cache
+          emptyDir: {}
+          # - name: host-vol
+          # hostPath:
+          #  path: /tmp
+          #  type: Directory
+          # - name: pvol
+          # persistentVolumeClaim:
+          # claimName: ebs-config
       nodeSelector:
         app-key: dealer
         # affinity:

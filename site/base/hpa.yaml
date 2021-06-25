@@ -18,14 +18,14 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
-    # - type: Resource
-    #   resource:
-    #     name: memory
-    #     target:
-    #       type: Utilization
-    #       averageUtilization: 90
-    #       type: AverageValue
-    #       averageValue: 1000Mi
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          # type: Utilization
+          # averageUtilization: 80
+          type: AverageValue
+          averageValue: 1000Mi
     # - type: Pods
     #   pods:
     #     metric:

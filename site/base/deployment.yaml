@@ -29,11 +29,13 @@ spec:
             - containerPort: 3300
           resources:
             requests:
-              cpu: "500m"
-              memory: "900Mi"
-            limits:
-              cpu: "1000m"
+              cpu: "200m"
               memory: "1000Mi"
+              ephemeral-storage: "2Gi"
+            limits:
+              cpu: "500m"
+              memory: "1200Mi"
+              ephemeral-storage: "3Gi"
           readinessProbe:
             httpGet:
               path: /
