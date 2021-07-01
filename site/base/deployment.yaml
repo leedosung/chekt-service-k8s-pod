@@ -53,4 +53,4 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
       nodeSelector:
-        app-key: site
+        alpha.eksctl.io/nodegroup-name: api-node

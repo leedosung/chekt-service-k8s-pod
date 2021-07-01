@@ -81,7 +81,7 @@ spec:
           # persistentVolumeClaim:
           # claimName: ebs-config
       nodeSelector:
-        app-key: dealer
+        alpha.eksctl.io/nodegroup-name: api-node
         # affinity:
         #  nodeAffinity:
         #    requiredDuringSchedulingIgnoredDuringExecution:
