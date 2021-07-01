@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: alb
     # alb.ingress.kubernetes.io/load-balancer-name: api
     alb.ingress.kubernetes.io/certificate-arn: >-
-      arn:aws:acm:ap-northeast-1:289952279049:certificate/0f3a9f87-f306-4f4a-984a-f164f3753814
+      arn:aws:acm:ap-northeast-2:289952279049:certificate/309084d9-2a08-44fb-ba39-de57b76d1101
     alb.ingress.kubernetes.io/scheme: internet-facing
     # alb.ingress.kubernetes.io/target-node-labels: "app-key=dealer"
     alb.ingress.kubernetes.io/backend-protocol: HTTP
