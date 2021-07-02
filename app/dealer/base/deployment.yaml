@@ -5,8 +5,8 @@ metadata:
 spec:
   # https://argoproj.github.io/argo-cd/user-guide/best_practices/#leaving-room-for-imperativeness
   # replicas: 2
-  revisionHistoryLimit: 5
-  minReadySeconds: 20
+  revisionHistoryLimit: 3
+  minReadySeconds: 10
   selector:
     matchLabels:
       app: dealer-api
@@ -56,7 +56,7 @@ spec:
             port: 3000
           failureThreshold: 2
           initialDelaySeconds: 5
-          periodSeconds: 10
+          periodSeconds: 5
           timeoutSeconds: 5
         livenessProbe:
           httpGet:
