@@ -4,4 +4,4 @@ resources:
 - ../base
 images:
 - name: 289952279049.dkr.ecr.ap-northeast-2.amazonaws.com/chekt/dealer-api
-  newTag: v7
+  newTag: v8
