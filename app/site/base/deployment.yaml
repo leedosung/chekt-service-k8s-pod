@@ -28,6 +28,7 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           runAsNonRoot: true
+          runAsUser: 1000
         imagePullPolicy: Always
         resources:
           requests:
