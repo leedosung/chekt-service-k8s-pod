@@ -1,0 +1,12 @@
+---
+# cp ~/.config/yamllint/config
+extends: default
+
+rules:
+  document-start: disable
+  line-length:
+    max: 256
+    level: warning
+  comments-indentation: disable
+  indentation:
+    indent-sequences: false

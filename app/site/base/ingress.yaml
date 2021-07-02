@@ -1,4 +1,3 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -25,18 +24,18 @@ metadata:
     alb.ingress.kubernetes.io/healthy-threshold-count: '2'
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
 spec:
-  #  defaultBackend:
-  #    service:
+  # defaultBackend:
+  #   service:
   #      name: site-api
   #      port:
   #        number: 3300
   rules:
-    - http:
-        paths:
-          - path: /api/v2/sites
-            pathType: Prefix
-            backend:
-              service:
-                name: site-api
-                port:
-                  number: 3300
+  - http:
+      paths:
+      - path: /api/v2/sites
+        pathType: Prefix
+        backend:
+          service:
+            name: site-api
+            port:
+              number: 3300
